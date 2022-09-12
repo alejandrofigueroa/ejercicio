@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AsignacioneController;
+use App\Http\Controllers\CooperanteController;
+use App\Http\Controllers\ProyectoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('inicio');
 });
+
+
+Route::resource('cooperantes', CooperanteController::class);
+Route::resource('proyectos', ProyectoController::class);
+Route::resource('asignaciones', AsignacioneController::class);
+Route::get('/generar-pdf/{id}', [AsignacioneController::class, 'generarReporte'])->name("reporte.pdf");
